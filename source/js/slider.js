@@ -19,12 +19,12 @@ const switchSlider = () => {
 }
 
 noUiSlider.create(scrollbar, {
-  start: [5],
+  start: [50],
   connect: 'lower',
   step: 1,
   range: {
       'min': 0,
-      'max': 10
+      'max': 100
   }
 });
 
@@ -40,4 +40,9 @@ afterButton.addEventListener('click', () => {
   switchSlider();
   beforeItem.style.width = 0;
   afterItem.style.width = '100%';
+});
+
+scrollbar.noUiSlider.on('update', () => {
+  beforeItem.style.width = scrollbar.noUiSlider.get() + '%';
+  afterItem.style.width = 100 - scrollbar.noUiSlider.get() + '%';
 });
